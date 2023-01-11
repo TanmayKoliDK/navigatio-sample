@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navigationapp/route_generator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,12 +16,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const FirstPage(),
-      routes: {
-        '/second': (_) => const SecondPage(
-              data: 'ABC',
-            ),
-      },
+      initialRoute: '/',
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
@@ -44,9 +41,15 @@ class FirstPage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pushNamed('/second');
+                Navigator.of(context).pushNamed(
+                  '/second',
+                  arguments: 'Hello there from the first page!',
+                );
               },
-              child: const Text('Go to second'),
+              child: const Text(
+                'Go to second',
+                style: TextStyle(fontSize: 20),
+              ),
             ),
           ],
         ),
