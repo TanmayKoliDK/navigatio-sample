@@ -16,6 +16,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const FirstPage(),
+      routes: {
+        '/second': (_) => const SecondPage(
+              data: 'ABC',
+            ),
+      },
     );
   }
 }
@@ -39,12 +44,7 @@ class FirstPage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        const SecondPage(data: 'Hello there from first page!'),
-                  ),
-                );
+                Navigator.of(context).pushNamed('/second');
               },
               child: const Text('Go to second'),
             ),
